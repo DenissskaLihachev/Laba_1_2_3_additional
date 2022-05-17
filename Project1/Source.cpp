@@ -118,24 +118,24 @@ void main()
 
 				for (int i = 0; i < inI; i++)
 				{
-					temp[i] = str[i];
+					temp[i] = str[i];	//записываем в п.м. элемент, который хотим удалить
 				}
 
 				for (int i = inI; i < size; i++)
 				{
-					temp[i] = str[i + 1];
+					temp[i] = str[i + 1];	//записываем нужный элемент в конец массива
 				}
 
-				delete[] str;
+				delete[] str;	//освобождаем память
 
-				str = new string[size];
+				str = new string[size];	//выделяем память
 
-				for (int i = 0; i < size; i++)
+				for (int i = 0; i < size; i++)	//записываем все эелементы кроме последнего
 				{
 					str[i] = temp[i];
 				}
 
-				delete[] temp;
+				delete[] temp;	//освобождаем память
 
 				break;
 			}
@@ -152,7 +152,7 @@ void main()
 				std::cout << "Вывод\n\n";
 				for (int i = 0; i < size; i++)
 				{
-					std::cout << str[i] << "\n";
+					std::cout << str[i] << "\n";	//просто выод всего массива
 				}
 				_getch();
 				system("cls");
@@ -163,7 +163,7 @@ void main()
 			{
 				std::cout << endl << "Введите имя файла (.txt): ";
 				char fileNameOut[100];
-				std::cin >> fileNameOut;
+				std::cin >> fileNameOut;	//вводим имя файлы, в который сохраняем
 
 				system("cls");
 
@@ -175,16 +175,16 @@ void main()
 					break;
 				}
 
-				FILE* file = nullptr;
+				FILE* file = nullptr;	//создаем указатель на файл
 
-				freopen_s(&file, fileNameOut, "w", stdout);
+				freopen_s(&file, fileNameOut, "w", stdout);	//перенаправляем поток для записи
 
 				for (int i = 0; i < size; i++)
 				{
-					std::cout << str[i] << endl;
+					std::cout << str[i] << endl;	//выводим все элементы массива не в консоль, а в сам файл
 				}
 
-				freopen_s(&file, "CON", "w", stdout);
+				freopen_s(&file, "CON", "w", stdout);	//перенаправляем поток обратно в консоль
 
 				std::cout << endl << "\nСохранено... ";
 				char p = _getch();
@@ -197,32 +197,33 @@ void main()
 			{
 				std::cout << endl << "\nВведите имя файла (.txt): ";
 				char fileNameIn[100];
-				std::cin >> fileNameIn;
+				std::cin >> fileNameIn;	//снова вводим имя файла
 
 				std::cout << "\nВведите количество строк: ";
 				int s;
-				std::cin >> s;
+				std::cin >> s;	//вводим сколько строк нам нужно загрузить
 
-				FILE* file = NULL;
+				FILE* file = NULL;	//указатель на файл
 
-				freopen_s(&file, fileNameIn, "r", stdin);
+				freopen_s(&file, fileNameIn, "r", stdin);	//перенаправляем поток для чтения
 
-				if (file != NULL) {
+				if (file != NULL)
+				{
 					std::cout << "Файл откыт\n";
 					for (int i = 0; i < s; i++)
 					{
 						size++;
-						if (str == NULL) str = new string[size];
+						if (str == NULL) str = new string[size];	//выделяем память
 						else
 						{
-							string* temp = new string[size];
+							string* temp = new string[size];	//выделяем память
 
 							for (int i = 0; i < size - 1; i++)
 							{
-								temp[i] = str[i];
+								temp[i] = str[i];	//записываем нужные нам элементы
 							}
 
-							delete[] str;
+							delete[] str;	//освобождаем память
 
 							str = new string[size];
 
@@ -231,15 +232,15 @@ void main()
 								str[i] = temp[i];
 							}
 
-							delete[] temp;
+							delete[] temp;	//освобождаем память
 						}
-						getline(std::cin, str[size - 1]);
+						getline(std::cin, str[size - 1]);	//записываем элемент из файла
 						std::cout << "\nДобавлена строка: " << str[size - 1];
 						_getch();
 						system("cls");
 					}
 					std::cout << endl;
-					freopen_s(&file, "CON", "r", stdin);
+					freopen_s(&file, "CON", "r", stdin); //перенаправляем в консоль
 				}
 				else
 				{
