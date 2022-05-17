@@ -45,35 +45,35 @@ void main()
 			{
 				std::cout << "Добавить строку\n";
 
-				string inputStr;
+				string inputStr; 
 
 				std::cin.get();
-				getline(std::cin, inputStr);
+				getline(std::cin, inputStr);	//вводим строку
 
-				size++;
+				size++;	//увеличиваем размер
 
-				if (str == NULL) str = new string[size];
+				if (str == NULL) str = new string[size];	//выделяем память под динамический массив
 				else
 				{
-					string* temp = new string[size];
+					string* temp = new string[size];	//выделяем память под динамический массив
 
-					for (int i = 0; i < size - 1; i++)
+					for (int i = 0; i < size - 1; i++)	//запись существующих строк в наш промежуточный массив
 					{
 						temp[i] = str[i];
 					}
 
-					delete[] str;
+					delete[] str;	//освобождаем память
 
-					str = new string[size];
+					str = new string[size];	//снова выделяем память
 
-					for (int i = 0; i < size - 1; i++)
+					for (int i = 0; i < size - 1; i++)	//перезаписываем в новый динамический массив
 					{
 						str[i] = temp[i];
 					}
 
-					delete[] temp;
+					delete[] temp;	//освободжаем память
 				}
-				str[size - 1] = inputStr;
+				str[size - 1] = inputStr;	//записываем введенную строку в конец
 				system("cls");
 				break;
 			}
@@ -100,19 +100,21 @@ void main()
 
 				std::cout << "Удаление строки\n\nВыберете строку:\n";
 
-				for (int i = 0; i < size; i++)
+				for (int i = 0; i < size; i++)	//выводим все строки для выбора
 				{
-					std::cout << i + 1 << ": " << str[i] << "\n\t";
+					std::cout << i + 1 << ": " << str[i] << "\n";
 				}
 
 				int inI;
-				std::cin >> inI;
+				std::cin >> inI;	//выбираем нужную строку
+
+				inI -= 1;
 
 				system("cls");
 
-				size--;
+				size--;	//уменьшаем размер
 
-				string* temp = new string[size];
+				string* temp = new string[size];	//выделяем память под промежуточный массив
 
 				for (int i = 0; i < inI; i++)
 				{
